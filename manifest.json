@@ -1,0 +1,7 @@
+{
+  "name": "YTSync",
+  "short_name": "YTSync",
+  "description": "YTSync is a web app desined for play multiple yotube videos syncronized",
+  "start_url": "/",
+  "display": "standalone"
+}
