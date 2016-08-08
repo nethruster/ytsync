@@ -1,27 +1,19 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-
-<dom-module id="YTSync-app">
+<link rel="import" href="../YTSync-sources/YTSync-sources.html">
+<dom-module id="ytsync-app">
   <template>
     <style>
       :host {
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]</h2>
+    <ytsync-sources id="test"></ytsync-sources>
   </template>
 
   <script>
     Polymer({
-
-      is: 'YTSync-app',
-
-      properties: {
-        prop1: {
-          type: String,
-          value: 'YTSync-app',
-        },
-      },
-
+      is: 'ytsync-app'
+      
     });
   </script>
 </dom-module>

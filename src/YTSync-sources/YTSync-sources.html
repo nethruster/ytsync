@@ -1,0 +1,46 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/google-youtube/google-youtube.html">
+<dom-module id="ytsync-sources">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'ytsync-sources',
+      properties: {
+        players: {
+          type: HTMLCollection,
+          value: document.getElementsByTagName('google-youtube'),
+          readOnly: true,
+          notify: true,
+        }
+      },
+      play: function() {
+        for(i=this.players.length -1; i >=0; i--) {
+          this.players[i].play();
+        }
+      },
+      pause: function() {
+        for(i=this.players.length -1; i >=0; i--) {
+          this.players[i].pause();
+        }
+      },
+      addPlayer: function() {
+        var player = document.createElement("google-youtube");
+        this.appendChild(player);
+        var id = this.players.length -1;
+        player.id = "" + id;
+        player.intId = id;
+        return player;
+      },
+      delPlayer: function(id) {
+        this.removeChild(this.players[id]);
+      }
+    });
+  </script>
+</dom-module>
