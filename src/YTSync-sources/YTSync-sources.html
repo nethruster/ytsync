@@ -14,10 +14,16 @@
       is: 'ytsync-sources',
       properties: {
         players: {
-          type: HTMLCollection,
-          value: document.getElementsByTagName('google-youtube'),
+          type: Object,
+          value: {},
           readOnly: true,
           notify: true,
+        },
+        lastId: {
+          type: Number,
+          value: 0,
+          readOnly: true,
+          notify: false,
         }
       },
       play: function() {
@@ -32,14 +38,16 @@
       },
       addPlayer: function() {
         var player = document.createElement("google-youtube");
-        this.appendChild(player);
-        var id = this.players.length -1;
-        player.id = "" + id;
-        player.intId = id;
-        return player;
+        Polymer.dom(this.root).appendChild(player);
+        player.id = "playerdId" + this.lastId;
+        player.intId = this.lastId;
+        this._setLastId(this.lastId + 1);
+        this.players[player.intId] = player;
+        return player.intId;
       },
       delPlayer: function(id) {
-        this.removeChild(this.players[id]);
+        this.players[id].remove();
+        delete this.players[id];
       }
     });
   </script>
