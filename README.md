@@ -1,6 +1,6 @@
 # \<YTSync\>
 
-YTSync is a web app desined for play multiple yotube videos syncronized
+YTSync is a web app desined to play multiple yotube videos at the same time
 
 ## Install the Polymer-CLI
 
