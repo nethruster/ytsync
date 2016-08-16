@@ -27,23 +27,31 @@
         }
       },
       play: function() {
-        for(i=this.players.length -1; i >=0; i--) {
-          this.players[i].play();
+        for(i = Object.keys(this.players).length - 1; i >= 0; i--) {
+            if(this.players[i]){
+                this.players[i].play();
+            }
         }
       },
       pause: function() {
-        for(i=this.players.length -1; i >=0; i--) {
-          this.players[i].pause();
+       for(i = Object.keys(this.players).length - 1; i >= 0; i--) {
+            if(this.players[i]){
+                this.players[i].pause();
+            }
         }
       },
       addPlayer: function() {
-        var player = document.createElement("google-youtube");
-        Polymer.dom(this.root).appendChild(player);
-        player.id = "playerdId" + this.lastId;
-        player.intId = this.lastId;
-        this._setLastId(this.lastId + 1);
-        this.players[player.intId] = player;
-        return player.intId;
+        if(Object.keys(this.players).length <= 5) {
+            var player = document.createElement("google-youtube");
+            Polymer.dom(this.root).appendChild(player);
+            player.id = "playerdId" + this.lastId;
+            player.intId = this.lastId;
+            this._setLastId(this.lastId + 1);
+            this.players[player.intId] = player;
+            return player.intId;
+        }else {
+            return false;
+        }
       },
       delPlayer: function(id) {
         this.players[id].remove();
