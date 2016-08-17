@@ -1,62 +1,93 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/google-youtube/google-youtube.html">
 <dom-module id="ytsync-sources">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-  </template>
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+    </template>
 
-  <script>
-    Polymer({
-      is: 'ytsync-sources',
-      properties: {
-        players: {
-          type: Object,
-          value: {},
-          readOnly: true,
-          notify: true,
-        },
-        lastId: {
-          type: Number,
-          value: 0,
-          readOnly: true,
-          notify: false,
-        }
-      },
-      play: function() {
-        for(i = Object.keys(this.players).length - 1; i >= 0; i--) {
-            if(this.players[i]){
-                this.players[i].play();
+    <script>
+        Polymer({
+            is: 'ytsync-sources',
+            properties: {
+                lastId: {
+                    type: Number,
+                    value: 0,
+                    readOnly: true,
+                    notify: false,
+                }
+            },
+            _idPrefix: "playerId",
+            players: function() {
+                return Polymer.dom(this.root).querySelectorAll("google-youtube");
+            },
+            getPlayer(id){
+                return this.$$("#" + this._idPrefix + id);
+            },
+            play: function() {
+                players = this.players();
+                for (i = players.length - 1; i >= 0; i--) {
+                    players[i].play();
+                }
+            },
+            pause: function() {
+                players = this.players();
+                for (i = players.length - 1; i >= 0; i--) {
+                    players[i].pause();
+                }
+            },
+            addPlayer: function() {
+                if (this.players().length < 6) {
+                    var player = document.createElement("google-youtube");
+                    Polymer.dom(this.root).appendChild(player);
+                    player.chromeless = true;
+                    player.id = this._idPrefix + this.lastId;
+                    player.intId = this.lastId;
+                    this._setLastId(this.lastId + 1);
+                    return player.intId;
+                } else {
+                    return false;
+                }
+            },
+            delPlayer: function(id) {
+                this.getPlayer(id).remove();
+            },
+            setPlayerVideId: function(id, videoId) {
+                this.getPlayer(id).videoId = videoId;
+            },
+            setPlayerVolume: function(id, volume) {
+                this.getPlayer(id).setVolume(volume);
+            },
+            setPlayerMute: function(id, status){
+                if(status) {
+                    this.getPlayer(id).mute();
+                }else{
+                    this.getPlayer(id).unMute();
+                }
+            },
+            addPlayerDelay: function(id, delay) {
+                var player = this.getPlayer(id);
+                var seconds = player.currenttime + delay;
+                if(seconds > 0) {
+                    player.seekTo(seconds);
+                    player.pause();
+                    return seconds;
+                }else{
+                    player.seekTo(0);
+                    player.pause();
+                    return 0;
+                }         
+            },
+            setPlayersStart: function(second) {
+                players = this.players();
+                for (i = players.length - 1; i >= 0; i--) {
+                    players[i].seekTo(second);
+                    players[i].pause();
+                }
             }
-        }
-      },
-      pause: function() {
-       for(i = Object.keys(this.players).length - 1; i >= 0; i--) {
-            if(this.players[i]){
-                this.players[i].pause();
-            }
-        }
-      },
-      addPlayer: function() {
-        if(Object.keys(this.players).length <= 5) {
-            var player = document.createElement("google-youtube");
-            Polymer.dom(this.root).appendChild(player);
-            player.id = "playerdId" + this.lastId;
-            player.intId = this.lastId;
-            this._setLastId(this.lastId + 1);
-            this.players[player.intId] = player;
-            return player.intId;
-        }else {
-            return false;
-        }
-      },
-      delPlayer: function(id) {
-        this.players[id].remove();
-        delete this.players[id];
-      }
-    });
-  </script>
+        });
+    </script>
 </dom-module>
