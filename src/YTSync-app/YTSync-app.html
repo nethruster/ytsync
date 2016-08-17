@@ -1,5 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../YTSync-sources/YTSync-sources.html">
+<link rel="import" href="../YTSync-control-menu/YTSync-control-menu.html">
+
 <dom-module id="ytsync-app">
   <template>
     <style>
@@ -8,12 +10,12 @@
       }
     </style>
     <ytsync-sources id="test"></ytsync-sources>
+    <ytsync-control-menu id="control-menu"></ytsync-control-menu>
   </template>
 
   <script>
     Polymer({
       is: 'ytsync-app'
-      
     });
   </script>
 </dom-module>

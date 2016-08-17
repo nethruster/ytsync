@@ -1,0 +1,22 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../YTSync-control/YTSync-control.html">
+<link rel="import" href="../YTSync-control-general/YTSync-control-general.html">
+<dom-module id="ytsync-control-menu">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <ytsync-control-general id="control-general"></ytsync-control-general>
+    <ytsync-control id="control"></ytsync-control>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'ytsync-control-menu',
+
+    });
+  </script>
+</dom-module>
