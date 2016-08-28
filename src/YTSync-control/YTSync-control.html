@@ -6,6 +6,7 @@
         display: block;
       }
     </style>
+
   </template>
 
   <script>
@@ -15,12 +16,36 @@
           sources: {
               type: Object,
               notify: false
-          }
+          },
           playerId: {
               type: Number,
               notify: false
           }
-      }
+      },
+    delPlayer: function() {
+        this.sources.delPlayer(this.playerId);
+        this.remove();
+    },
+    setPlayerVideId: function() {
+        this.sources.setPlayerVideId(this.playerId, this.videoId);
+    },
+  //  setPlayerVolume: function() {
+  //      this.sources.setPlayerVolume(playerId, volume);
+  //  },
+    setPlayerMute: function(){
+        this.sources.setPlayerMute(this.playerId, this.status);
+    },
+    addPlayerDelay: function() {
+        this.sources.addPlayerDelay(this.playerId, this.delay);
+    },
+   // setPlayersStart: function() {
+   //     this.sources.setPlayersStart(second);
+   // }
+    parseUrl: function(url) {
+        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        var match = url.match(regExp);
+        return (match&&match[7].length==11)? match[7] : false;
+    }
     });
   </script>
 </dom-module>

@@ -1,6 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../YTSync-control/YTSync-control.html">
 <link rel="import" href="../YTSync-control-general/YTSync-control-general.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <dom-module id="ytsync-control-menu">
     <template>
     <style>
@@ -9,8 +11,6 @@
       }
     </style>
     <ytsync-control-general id="control-general" sources-players="[[sourcesPlayers]]"></ytsync-control-general>
-    <ytsync-control id="control"></ytsync-control>
-
   </template>
 
     <script>
@@ -20,20 +20,16 @@
                 sourcesPlayers: {
                     type: Object,
                     readOnly: false,
-                    notify: false,
+                    notify: false
                 }
             },
-            parseUrl: function(url) {
-                var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-                var match = url.match(regExp);
-                return (match&&match[7].length==11)? match[7] : false;
-            }
             addPlayer: function() {
                 var player = this.sourcesPlayers.addPlayer();
-                if(!player) {
+                if(player === false) {
                     return "Maximo alacanzado";
                 }
                 var control = document.createElement("ytsync-control");
+                var url = this.$.video.value;
                 control.sources = this.sourcesPlayers;
                 control.playerId = player;
                 Polymer.dom(this.root).appendChild(control);
