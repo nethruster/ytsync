@@ -1,13 +1,26 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <dom-module id="ytsync-control">
   <template>
     <style>
       :host {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
+     
     </style>
+    <paper-slider min="0" max="100" value="{{volume}}"></paper-slider>
+    <paper-input id="videoId" name="videoId" label="Video url"></paper-input>
+    <paper-button raised on-tap="setPlayerVideId">Set player</paper-button>
+    <paper-button raised on-tap="delPlayer">Delete player</paper-button>
+   
+   
+    </paper-dialog>
   </template>
-
   <script>
     Polymer({
       is: 'ytsync-control',

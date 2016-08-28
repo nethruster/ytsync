@@ -5,15 +5,28 @@
 <dom-module id="ytsync-control-menu">
     <template>
     <style>
-      :host {
-        display: block;
-      }
+        :host {
+            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        paper-toolbar.bottom {
+           width: 100%;
+           position: fixed;
+           bottom: 0;
+        }
     </style>
-
-    <paper-button raised on-tap="addPlayer">Add</paper-button>
+    <paper-toolbar class="bottom">
+        <paper-icon-button icon="menu"></paper-icon-button>
+        <span class="title">YoutuSync</span>
+        <paper-icon-button icon="refresh"></paper-icon-button>
+        <paper-button raised on-tap="addPlayer"><iron-icon icon="icons:add"></iron-icon>&nbsp;Add Video</paper-button>
+    </paper-toolbar>
     <ytsync-control-general id="control-general" sources-players="[[sourcesPlayers]]"></ytsync-control-general>
-  </template>
 
+    
+  </template>
     <script>
         Polymer({
             is: 'ytsync-control-menu',
