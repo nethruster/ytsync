@@ -23,8 +23,20 @@
                     notify: false,
                 }
             },
-            attached: function() {
-                console.log(this.sourcesPlayers);
+            parseUrl: function(url) {
+                var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+                var match = url.match(regExp);
+                return (match&&match[7].length==11)? match[7] : false;
+            }
+            addPlayer: function() {
+                var player = this.sourcesPlayers.addPlayer();
+                if(!player) {
+                    return "Maximo alacanzado";
+                }
+                var control = document.createElement("ytsync-control");
+                control.sources = this.sourcesPlayers;
+                control.playerId = player;
+                Polymer.dom(this.root).appendChild(control);
             }
         });
     </script>

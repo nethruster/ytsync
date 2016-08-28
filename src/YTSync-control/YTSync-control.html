@@ -10,7 +10,17 @@
 
   <script>
     Polymer({
-      is: 'ytsync-control'
+      is: 'ytsync-control',
+      properties: {
+          sources: {
+              type: Object,
+              notify: false
+          }
+          playerId: {
+              type: Number,
+              notify: false
+          }
+      }
     });
   </script>
 </dom-module>
