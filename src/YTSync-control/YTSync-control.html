@@ -6,7 +6,6 @@
         display: block;
       }
     </style>
-
   </template>
 
   <script>
@@ -20,6 +19,11 @@
           playerId: {
               type: Number,
               notify: false
+          },
+          volume: {
+              type: Number,
+              notify: false,
+              observer: '_volumeChanged'
           }
       },
     delPlayer: function() {
@@ -27,24 +31,30 @@
         this.remove();
     },
     setPlayerVideId: function() {
-        this.sources.setPlayerVideId(this.playerId, this.videoId);
+        var videoId = this.parseUrl(this.$.videoId.value);
+        this.sources.setPlayerVideId(this.playerId, videoId);
+        this.volume = 100;
     },
-  //  setPlayerVolume: function() {
-  //      this.sources.setPlayerVolume(playerId, volume);
-  //  },
-    setPlayerMute: function(){
-        this.sources.setPlayerMute(this.playerId, this.status);
-    },
+     setPlayerVolume: function(volume) {
+         this.sources.setPlayerVolume(this.playerId, volume);
+     },
+    // setPlayerMute: function(e){
+    //     console.log(e);
+    //     // this.sources.setPlayerMute(this.playerId, status);
+    // },
     addPlayerDelay: function() {
-        this.sources.addPlayerDelay(this.playerId, this.delay);
+        var delay = this.$.delay.value; 
+        this.sources.addPlayerDelay(this.playerId, delay);
     },
-   // setPlayersStart: function() {
-   //     this.sources.setPlayersStart(second);
-   // }
     parseUrl: function(url) {
         var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
         var match = url.match(regExp);
         return (match&&match[7].length==11)? match[7] : false;
+    },
+
+    // Observers
+    _volumeChanged: function(newValue, oldValue) {
+        this.setPlayerVolume(newValue);
     }
     });
   </script>

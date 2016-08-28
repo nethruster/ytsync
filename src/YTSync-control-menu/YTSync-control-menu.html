@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../YTSync-control/YTSync-control.html">
 <link rel="import" href="../YTSync-control-general/YTSync-control-general.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <dom-module id="ytsync-control-menu">
     <template>
     <style>
@@ -8,8 +9,9 @@
         display: block;
       }
     </style>
+
+    <paper-button raised on-tap="addPlayer">Add</paper-button>
     <ytsync-control-general id="control-general" sources-players="[[sourcesPlayers]]"></ytsync-control-general>
-    
   </template>
 
     <script>
@@ -25,7 +27,7 @@
             addPlayer: function() {
                 var player = this.sourcesPlayers.addPlayer();
                 if(player === false) {
-                    return "Maximo alacanzado";
+                    return;
                 }
                 var control = document.createElement("ytsync-control");
                 control.sources = this.sourcesPlayers;
