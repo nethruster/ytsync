@@ -3,19 +3,22 @@
 <link rel="import" href="../YTSync-control-menu/YTSync-control-menu.html">
 
 <dom-module id="ytsync-app">
-  <template>
+    <template>
     <style>
       :host {
         display: block;
       }
     </style>
-    <ytsync-sources id="test"></ytsync-sources>
+    <ytsync-sources id="sources"></ytsync-sources>
     <ytsync-control-menu id="control-menu"></ytsync-control-menu>
   </template>
 
-  <script>
-    Polymer({
-      is: 'ytsync-app'
-    });
-  </script>
+    <script>
+        Polymer({
+            is: 'ytsync-app',
+            attached: function() {
+                this.$$("#control-menu").sourcesPlayers = this.$$("#sources");
+            }
+        });
+    </script>
 </dom-module>

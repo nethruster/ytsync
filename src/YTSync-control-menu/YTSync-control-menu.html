@@ -2,21 +2,30 @@
 <link rel="import" href="../YTSync-control/YTSync-control.html">
 <link rel="import" href="../YTSync-control-general/YTSync-control-general.html">
 <dom-module id="ytsync-control-menu">
-  <template>
+    <template>
     <style>
       :host {
         display: block;
       }
     </style>
-    <ytsync-control-general id="control-general"></ytsync-control-general>
+    <ytsync-control-general id="control-general" sources-players="[[sourcesPlayers]]"></ytsync-control-general>
     <ytsync-control id="control"></ytsync-control>
 
   </template>
 
-  <script>
-    Polymer({
-      is: 'ytsync-control-menu',
-
-    });
-  </script>
+    <script>
+        Polymer({
+            is: 'ytsync-control-menu',
+            properties: {
+                sourcesPlayers: {
+                    type: Object,
+                    readOnly: false,
+                    notify: false,
+                }
+            },
+            attached: function() {
+                console.log(this.sourcesPlayers);
+            }
+        });
+    </script>
 </dom-module>
