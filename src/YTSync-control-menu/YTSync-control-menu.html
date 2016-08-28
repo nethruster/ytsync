@@ -1,8 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../YTSync-control/YTSync-control.html">
 <link rel="import" href="../YTSync-control-general/YTSync-control-general.html">
-<link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <dom-module id="ytsync-control-menu">
     <template>
     <style>
@@ -11,6 +9,7 @@
       }
     </style>
     <ytsync-control-general id="control-general" sources-players="[[sourcesPlayers]]"></ytsync-control-general>
+    
   </template>
 
     <script>
@@ -29,7 +28,6 @@
                     return "Maximo alacanzado";
                 }
                 var control = document.createElement("ytsync-control");
-                var url = this.$.video.value;
                 control.sources = this.sourcesPlayers;
                 control.playerId = player;
                 Polymer.dom(this.root).appendChild(control);
