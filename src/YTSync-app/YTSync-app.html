@@ -8,13 +8,22 @@
 <dom-module id="ytsync-app">
     <template>
     <style>
-      :host {
+    :host {
         display: block;
-      }
+    }
+    paper-toolbar.bottom {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+    }
     </style>
-    <ytsync-sources id="sources" class="layout horizontal wrap"></ytsync-sources>
-    <ytsync-control-menu id="control-menu"></ytsync-control-menu>
-  </template>
+        <ytsync-sources id="sources" class="layout horizontal wrap"></ytsync-sources>
+        <paper-toolbar class="bottom">
+            <paper-icon-button icon="menu"></paper-icon-button>
+            <paper-icon-button icon="refresh"></paper-icon-button>
+            <ytsync-control-menu id="control-menu"></ytsync-control-menu>
+        </paper-toolbar>
+    </template>
 
     <script>
         Polymer({

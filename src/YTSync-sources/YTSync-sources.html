@@ -8,7 +8,7 @@
                 align-items: center;
                 justify-content: center;
                 flex-wrap: wrap;
-                max-width: 1900px;
+                max-width: 1439px;
                 margin: 0 auto;
             }
             google-youtube {
@@ -49,7 +49,8 @@
                 }
             },
             addPlayer: function() {
-                if (this.players().length < 6) {
+                if (this.players().length < 4) {
+                    
                     var player = document.createElement("google-youtube");
                     Polymer.dom(this.root).appendChild(player);
                     player.chromeless = true;
