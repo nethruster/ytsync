@@ -7,10 +7,11 @@
   <template>
     <style>
       :host {
-        position: relative;
         display: block;
-        top: 90px;
-        margin: 0 5px 0 5px;
+        padding: 20px;
+        min-height: 270px;
+        display: flex;
+        align-items: baseline;
       }
       paper-slider {
           margin: 0 auto;
@@ -27,14 +28,14 @@
          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
      }
      .controls {
-         margin-top: 2px;
+         margin-top: 15px;
          background: #fff;
          padding: 15px;
          border-radius: 2px;
          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
      }
     </style>
-        <div class="header" on-click="changeClass">Video Title</div>
+        <div class="header" on-click="changeClass">{{playerId}}</div>
         <div class="controls">
             <paper-slider min="0" max="100" value="{{volume}}"></paper-slider>
             <paper-input id="videoId" name="videoId" label="Video url"></paper-input>
@@ -62,7 +63,6 @@
               observer: '_volumeChanged'
           }
       },
-    open: "false",
     delPlayer: function() {
         this.sources.delPlayer(this.playerId);
         this.remove();
@@ -92,20 +92,6 @@
     // Observers
     _volumeChanged: function(newValue, oldValue) {
         this.setPlayerVolume(newValue);
-    },
-
-    // Change tab control state
-    changeClass: function(){
-        if(this.open){
-            this.open = false;
-            this.style.top = "-80px";
-            return;
-        }
-         if(!this.open){
-            this.open = true;
-            this.style.top = "90px"; 
-            return;
-        }
     }
     });
   </script>

@@ -1,7 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../YTSync-control/YTSync-control.html">
-<link rel="import" href="../YTSync-control-general/YTSync-control-general.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-icons/av-icons.html">
 <dom-module id="ytsync-control-menu">
     <template>
     <style>
@@ -12,8 +13,9 @@
             justify-content: center;
         }      
     </style>   
-    <ytsync-control-general id="control-general" sources-players="[[sourcesPlayers]]"></ytsync-control-general>
-    <paper-button raised on-tap="addPlayer" id="addButton"><iron-icon icon="icons:add"></iron-icon>&nbsp;Add Video</paper-button>
+    <paper-icon-button icon="av:play-arrow" on-tap="playAll"></paper-icon-button>
+    <paper-icon-button icon="av:pause" on-tap="pauseAll"></paper-icon-button>
+    
   </template>
     <script>
         Polymer({
@@ -25,16 +27,15 @@
                     notify: false
                 }
             },
-            addPlayer: function() {
-                var player = this.sourcesPlayers.addPlayer();
-                if(player === false) {
-                    return;
-                }
-                var control = document.createElement("ytsync-control");
-                control.sources = this.sourcesPlayers;
-                control.playerId = player;
-                Polymer.dom(this.root).appendChild(control);
+            pauseAll: function() {
+                this.sourcesPlayers.pause();
+                console.log("paused");
+            },
+            playAll: function() {
+                this.sourcesPlayers.play();
+                console.log("playing");
             }
+            
         });
     </script>
 </dom-module>

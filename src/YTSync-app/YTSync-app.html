@@ -8,21 +8,64 @@
 <dom-module id="ytsync-app">
     <template>
     <style>
+    body {
+        height: 100vh;;
+    }
     :host {
         display: block;
+        height: 100%;
     }
-    paper-toolbar.bottom {
+    paper-toolbar {
+        padding: 0 45px 0 45px;
+        background-color: #1565c0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.12), 0 2px 5px rgba(0,0,0,0.24);
+        margin-bottom: 25px;
+    }
+    .title {margin-left: 65px!important;}
+    #main_container {
+        position: relative;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-start;
+        justify-content: space-around;
+        width: 100vw;
+    }
+    #yt-app-action {
         width: 100%;
-        position: fixed;
-        bottom: 0;
+        max-width: 1000px;
+        height: auto;
+        position: relative;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        background-color: #eceff1;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.12), 0 2px 5px rgba(0,0,0,0.24);
+    }
+    #controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    #addButton {
+        background-color: #2196f3;
     }
     </style>
-        <ytsync-sources id="sources" class="layout horizontal wrap"></ytsync-sources>
-        <paper-toolbar class="bottom">
-            <paper-icon-button icon="menu"></paper-icon-button>
-            <paper-icon-button icon="refresh"></paper-icon-button>
+        <paper-toolbar>
             <ytsync-control-menu id="control-menu"></ytsync-control-menu>
+            
+            <div class="title">YoutuSync</div>
+            <paper-button raised on-tap="addPlayer" id="addButton"><iron-icon icon="icons:add"></iron-icon>&nbsp;Add Video</paper-button>
         </paper-toolbar>
+        <div id="main_container">
+            <div id="yt-app-action">
+                <ytsync-sources id="sources" class="layout horizontal wrap"></ytsync-sources>
+                <div id="controls">
+                    
+                </div>
+            </div>
+        </div>
+        
     </template>
 
     <script>
@@ -30,6 +73,16 @@
             is: 'ytsync-app',
             attached: function() {
                 this.$$("#control-menu").sourcesPlayers = this.$$("#sources");
+            },
+            addPlayer: function() {
+                var player = this.$$("#sources").addPlayer();
+                if(player === false) {
+                    return;
+                }
+                var control = document.createElement("ytsync-control");
+                control.sources = this.$$("#sources");
+                control.playerId = player;
+                Polymer.dom(this.$$("#controls")).appendChild(control);
             }
         });
     </script>
