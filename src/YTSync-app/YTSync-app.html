@@ -8,20 +8,19 @@
 <dom-module id="ytsync-app">
     <template>
     <style>
-    body {
-        height: 100vh;;
-    }
     :host {
         display: block;
         height: 100%;
     }
     paper-toolbar {
         padding: 0 45px 0 45px;
-        background-color: #1565c0;
+        background-color: #252525;
         box-shadow: 0 2px 5px rgba(0,0,0,0.12), 0 2px 5px rgba(0,0,0,0.24);
         margin-bottom: 25px;
     }
-    .title {margin-left: 65px!important;}
+    paper-button {
+            padding: 0.45em 0.57em;
+    }    
     #main_container {
         position: relative;
         display: flex;
@@ -38,7 +37,7 @@
         display: flex;
         flex-direction: row-reverse;
         justify-content: space-between;
-        background-color: #eceff1;
+        background-color: #fff;
         box-shadow: 0 2px 5px rgba(0,0,0,0.12), 0 2px 5px rgba(0,0,0,0.24);
     }
     #controls {
@@ -46,10 +45,12 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        background-color: #e6e6e6;
     }
     #addButton {
-        background-color: #2196f3;
+        background-color: #404040;
     }
+    .title {margin-left: 65px!important;}
     </style>
         <paper-toolbar>
             <ytsync-control-menu id="control-menu"></ytsync-control-menu>
