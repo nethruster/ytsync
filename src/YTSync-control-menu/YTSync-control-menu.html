@@ -13,8 +13,8 @@
             justify-content: center;
         }      
     </style>   
-    <paper-icon-button icon="av:play-arrow" on-tap="playPauseController" alt="Play All Videos"></paper-icon-button>
-    <paper-icon-button icon="av:pause" on-tap="" alt="Pause All Videos"></paper-icon-button>
+    <paper-icon-button icon="av:play-arrow" on-tap="playAll" alt="Play All Videos"></paper-icon-button>
+    <paper-icon-button icon="av:pause" on-tap="pauseAll" alt="Pause All Videos"></paper-icon-button>
     
   </template>
     <script>
@@ -27,24 +27,11 @@
                     notify: false
                 }
             },
-            _isPlaying: false,
             pauseAll: function() {
                 this.sourcesPlayers.pause();
-                this._isPlaying = false
             },
             playAll: function() {
                 this.sourcesPlayers.play();
-                this._isPlaying = true;
-            },
-            playPauseController: function(){
-                if(this._isPlaying){
-                    console.log(true);
-                    this.pauseAll();
-                } else if(!this._isPlaying){
-                    console.log(false);
-                    this.playAll();
-                   
-                }
             }
         });
     </script>

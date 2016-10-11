@@ -1,50 +1,67 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-icons/av-icons.html">
 <dom-module id="ytsync-control">
   <template>
     <style>
-      :host {
-        display: block;
-        padding: 20px 20px 20px 20px;
-        min-height: 250px;
-        display: flex;
-        align-items: baseline;
-        
-      }
-      paper-slider {
-          margin: 0 auto;
-      }
-      paper-button {
-          color: #263238;
-      }
-     .header {
-         color: #263238;
-         padding: 15px;
-         text-align: center;
-         background: #f1f1f1;
-         border-radius: 2px;
-         box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-     }
-     .controls {
-         margin-top: 15px;
-         background: #fff;
-         padding: 15px;
-         border-radius: 2px;
-         box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-     }
+        :host {
+            display: block;
+            padding: 20px 20px 20px 20px;
+            min-height: 250px;
+            display: flex;
+            align-items: baseline;
+
+        }
+        paper-slider {
+            margin: 0 auto;
+        }
+        paper-button {
+            color: #fff;
+            background-color: #37474f;
+        }
+        paper-input.ctrl-input {
+            --paper-input-container-focus-color: #607d8b;
+        }
+        paper-slider::shadow #sliderBar::shadow #primaryProgress {
+            background-color: #607d8b;
+        }
+        paper-slider::shadow #sliderKnob > #sliderKnobInner{
+            background-color: #455a64;
+            border: 2px solid #455a64;
+        }
+        .header {
+            color: #263238;
+            padding: 15px;
+            text-align: center;
+            background: #f1f1f1;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+        .controls {
+            margin-top: 15px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+        .volume-control {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
     </style>
-        <div class="header" on-click="changeClass">{{playerId}}</div>
+        <div class="header">{{playerId}}</div>
         <div class="controls">
-            <paper-slider min="0" max="100" value="{{volume}}"></paper-slider>
-            <paper-input id="videoId" name="videoId" label="Video url"></paper-input>
+            <span class="volume-control">
+                <paper-slider min="0" max="100" value="{{volume}}" class="ctrl-slider"></paper-slider><paper-icon-button on-tap="setPlayerMute" icon="{{mutedIcon}}"></paper-icon-button>
+            </span>            
+            <paper-input id="videoId" name="videoId" label="Video url" class="ctrl-input"></paper-input>
             <paper-button raised on-tap="setPlayerVideId">Set player</paper-button>
             <paper-button raised on-tap="delPlayer">Delete player</paper-button>
         </div>
-   
-    </paper-dialog>
   </template>
   <script>
     Polymer({
@@ -58,12 +75,18 @@
               type: Number,
               notify: false
           },
+          mutedIcon: {
+              type: String,
+              notify: false,
+              value: 'av:volume-up'
+          },
           volume: {
               type: Number,
               notify: false,
               observer: '_volumeChanged'
           }
       },
+    _isMuted: false,
     delPlayer: function() {
         this.sources.delPlayer(this.playerId);
         this.remove();
@@ -73,13 +96,20 @@
         this.sources.setPlayerVideId(this.playerId, videoId);
         this.volume = 100;
     },
-     setPlayerVolume: function(volume) {
-         this.sources.setPlayerVolume(this.playerId, volume);
-     },
-    // setPlayerMute: function(e){
-    //     console.log(e);
-    //     // this.sources.setPlayerMute(this.playerId, status);
-    // },
+    setPlayerVolume: function(volume) {
+        this.sources.setPlayerVolume(this.playerId, volume);
+    },
+    setPlayerMute: function(){
+        if(!this._isMuted){
+            this.sources.setPlayerMute(this.playerId, true);
+            this.mutedIcon = 'av:volume-off';
+            this._isMuted = true;
+        }else {
+            this.sources.setPlayerMute(this.playerId, false);
+            this.mutedIcon = 'av:volume-up';
+            this._isMuted = false;
+        }
+    },
     addPlayerDelay: function() {
         var delay = this.$.delay.value; 
         this.sources.addPlayerDelay(this.playerId, delay);
