@@ -15,6 +15,7 @@
     </style>   
     <paper-icon-button icon="av:play-arrow" on-tap="playAll" alt="Play All Videos"></paper-icon-button>
     <paper-icon-button icon="av:pause" on-tap="pauseAll" alt="Pause All Videos"></paper-icon-button>
+    <paper-icon-button icon="{{mutedIcon}}" on-tap="muteAll" alt="Mute All Videos"></paper-icon-button>
     
   </template>
     <script>
@@ -25,13 +26,30 @@
                     type: Object,
                     readOnly: false,
                     notify: false
-                }
+                },
+                mutedIcon: {
+                    type: String,
+                    notify: false,
+                    value: 'av:volume-up'
+                },
             },
+            _allMuted: false,
             pauseAll: function() {
                 this.sourcesPlayers.pause();
             },
             playAll: function() {
                 this.sourcesPlayers.play();
+            },
+            muteAll: function(){
+                 if(!this._allMuted){
+                    this.sourcesPlayers.setPlayersMute(true);
+                    this.mutedIcon = 'av:volume-off';
+                    this._allMuted = true;
+                }else {
+                    this.sourcesPlayers.setPlayersMute(false);
+                    this.mutedIcon = 'av:volume-up';
+                    this._allMuted = false;
+                }
             }
         });
     </script>
