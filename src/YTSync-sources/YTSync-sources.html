@@ -60,14 +60,6 @@
                 }
             },
             delPlayer: function(id) {
-                // console.log(this.getPlayer(id));
-                for (var i=this.players().length-1; i>=0; i--) {
-                   if (this.players()[i] === this.getPlayer(id)) {
-                       console.log(this.players(), this.getPlayer(id));
-                       this.players().splice(i, 1);
-                       break;       //<-- Uncomment  if only the first term has to be removed
-                   }
-                }
                 this.getPlayer(id).remove();
             },
             setPlayerVideId: function(id, videoId) {

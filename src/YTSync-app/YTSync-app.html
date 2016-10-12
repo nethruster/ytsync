@@ -73,6 +73,7 @@
             is: 'ytsync-app',
             attached: function() {
                 this.$$("#control-menu").sourcesPlayers = this.$$("#sources");
+                this.$$("#control-menu").controlsWrapper = this.$$("#controls");
             },
             addPlayer: function() {
                 var player = this.$$("#sources").addPlayer();

@@ -75,6 +75,10 @@
               type: Number,
               notify: false
           },
+          isMuted: {
+              type:Boolean,
+              value: false
+          },
           mutedIcon: {
               type: String,
               notify: false,
@@ -86,7 +90,6 @@
               observer: '_volumeChanged'
           }
       },
-    _isMuted: false,
     delPlayer: function() {
         this.sources.delPlayer(this.playerId);
         this.remove();
@@ -100,14 +103,14 @@
         this.sources.setPlayerVolume(this.playerId, volume);
     },
     setPlayerMute: function(){
-        if(!this._isMuted){
+        if(!this.isMuted){
             this.sources.setPlayerMute(this.playerId, true);
             this.mutedIcon = 'av:volume-off';
-            this._isMuted = true;
+            this.isMuted = true;
         }else {
             this.sources.setPlayerMute(this.playerId, false);
             this.mutedIcon = 'av:volume-up';
-            this._isMuted = false;
+            this.isMuted = false;
         }
     },
     addPlayerDelay: function() {

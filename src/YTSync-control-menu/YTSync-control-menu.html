@@ -22,6 +22,11 @@
         Polymer({
             is: 'ytsync-control-menu',
             properties: {
+                controlsWrapper: {
+                    type: Object,
+                    readOnly: false,
+                    notify: false
+                },
                 sourcesPlayers: {
                     type: Object,
                     readOnly: false,
@@ -41,14 +46,23 @@
                 this.sourcesPlayers.play();
             },
             muteAll: function(){
+                var controls = Polymer.dom(this.controlsWrapper).querySelectorAll("ytsync-control");
                  if(!this._allMuted){
                     this.sourcesPlayers.setPlayersMute(true);
                     this.mutedIcon = 'av:volume-off';
                     this._allMuted = true;
+                    for (i = controls.length -1; i >= 0; i--) {
+                        controls[i].mutedIcon = 'av:volume-off';
+                        controls[i].isMuted = true;
+                    } 
                 }else {
                     this.sourcesPlayers.setPlayersMute(false);
                     this.mutedIcon = 'av:volume-up';
                     this._allMuted = false;
+                    for (i = controls.length -1; i >= 0; i--) {
+                        controls[i].mutedIcon = 'av:volume-up';
+                        controls[i].isMuted = false;
+                    }
                 }
             }
         });
