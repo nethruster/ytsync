@@ -3,6 +3,8 @@
 <link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/av-icons.html">
 <dom-module id="ytsync-control">
   <template>
@@ -31,6 +33,9 @@
             background-color: #455a64;
             border: 2px solid #455a64;
         }
+        #videoDelay {
+            display: inline-block;
+        }
         .header {
             padding: 15px;
             text-align: center;
@@ -40,11 +45,11 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         }
         .controls {
-            margin-top: 15px;
-            padding: 15px;
+            padding: 15px 15px 10px 15px;
             border-radius: 2px;
-            background: #fff;            
+            background: #fff;
             box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            position: absolute;
         }
         .volume-control {
             display: flex;
@@ -56,11 +61,34 @@
             height: 100%;
             display: flex;
             justify-content: center;
-            align-items: baseline;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .extra-controls {
+            margin-top: 15px;
+            border-top: 1px solid rgba(0,0,0,.1);
+            color: #7e8f8f;
+            cursor: pointer;
+            height: 15px;
+            overflow: hidden;
+        }
+        .extra-controls span {
+            padding: 5px;
+            text-transform: uppercase;
+            text-align: center;
+            font-size: .8em;
+            display: block;
+        }
+        .extra-controls span:hover {
+            color: #222;
+        }
+        .extra {
+            left: 101%;
         }
     </style>
         <div class="control-wrapper">
-            <div class="header">{{playerId}}</div>
+            <!--<div class="header">{{playerId}}</div>-->
             <div class="controls">
                 <span class="volume-control">
                     <paper-slider min="0" max="100" value="{{volume}}" class="ctrl-slider"></paper-slider><paper-icon-button on-tap="setPlayerMute" icon="{{mutedIcon}}"></paper-icon-button>
@@ -68,8 +96,20 @@
                 <paper-input id="videoId" name="videoId" label="Video url" class="ctrl-input"></paper-input>
                 <paper-button raised on-tap="setPlayerVideId">Set player</paper-button>
                 <paper-button raised on-tap="delPlayer">Delete player</paper-button>
+                <div class="extra-controls">
+                    <span on-click="extraOptionsHandler">More controls</span>
+                </div>
             </div>
-        </div>  
+             <div class="controls extra">
+                <div class="delay-control">
+                    <paper-input id="videoDelay" name="videoDelay" label="Start time" class="ctrl-input"></paper-input><paper-button raised on-tap="setPlayerDelay">Set time</paper-button>
+                </div>
+                <div class="extra-controls">
+                    <span on-click="extraOptionsHandler">Back</span>
+                </div>
+            </div>     
+        </div>
+           
   </template>
   <script>
     Polymer({
@@ -84,7 +124,7 @@
               notify: false
           },
           isMuted: {
-              type:Boolean,
+              type: Boolean,
               value: false
           },
           mutedIcon: {
