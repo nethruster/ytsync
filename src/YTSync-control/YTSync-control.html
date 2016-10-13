@@ -177,10 +177,6 @@
     setStartTime: function(){
         this.sources.addPlayerDelay(this.playerId, this.$.videoDelay.value);
     },
-    addPlayerDelay: function() {
-        var delay = this.$.delay.value; 
-        this.sources.addPlayerDelay(this.playerId, delay);
-    },
     parseUrl: function(url) {
         var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
         var match = url.match(regExp);
