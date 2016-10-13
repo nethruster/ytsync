@@ -109,7 +109,7 @@
             </div>
              <div class$="controls extra {{extraActiveClass}}">
                 <div class="delay-control">
-                    <paper-input id="videoDelay" name="videoDelay" label="Start time" class="ctrl-input"></paper-input><paper-button raised on-tap="setPlayerDelay">Set time</paper-button>
+                    <paper-input id="videoDelay" name="videoDelay" label="Start time (in seconds)" class="ctrl-input"></paper-input><paper-button raised on-tap="setStartTime">Set time</paper-button>
                 </div>
                 <div class="extra-controls">
                     <span on-click="extraOptionsHandler">Back</span>
@@ -173,6 +173,9 @@
             this.mutedIcon = 'av:volume-up';
             this.isMuted = false;
         }
+    },
+    setStartTime: function(){
+        this.sources.addPlayerDelay(this.playerId, this.$.videoDelay.value);
     },
     addPlayerDelay: function() {
         var delay = this.$.delay.value; 
