@@ -31,26 +31,26 @@
     }
     #yt-app-action {
         width: 100%;
-        max-width: 1000px;
         height: auto;
+        max-width: 1000px;        
         position: relative;
         display: flex;
         flex-direction: row-reverse;
         justify-content: space-between;
-        background-color: #fff;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.12), 0 2px 5px rgba(0,0,0,0.24);
     }
     #controls {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: #e6e6e6;
+        width: 100%;
     }
     #addButton {
         background-color: #404040;
     }
-    .title {margin-left: 65px!important;}
+    .title {
+        margin-left: 65px!important;
+    }
     </style>
         <paper-toolbar>
              <div class="title">YoutuSync</div>
@@ -60,12 +60,9 @@
         <div id="main_container">
             <div id="yt-app-action">
                 <ytsync-sources id="sources" class="layout horizontal wrap"></ytsync-sources>
-                <div id="controls">
-                    
-                </div>
+                <div id="controls"></div>
             </div>
-        </div>
-        
+        </div>        
     </template>
 
     <script>

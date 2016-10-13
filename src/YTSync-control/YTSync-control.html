@@ -9,11 +9,10 @@
     <style>
         :host {
             display: block;
-            padding: 20px 20px 20px 20px;
-            min-height: 250px;
-            display: flex;
-            align-items: baseline;
-
+            width: 100%;
+            height: 100%;
+            margin-bottom: 20px;
+            background-color: #e6e6e6;
         }
         paper-slider {
             margin: 0 auto;
@@ -33,18 +32,18 @@
             border: 2px solid #455a64;
         }
         .header {
-            color: #263238;
             padding: 15px;
             text-align: center;
+            color: #263238;
             background: #f1f1f1;
-            border-radius: 2px;
+            border-radius: 2px 0 0px 2px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         }
         .controls {
             margin-top: 15px;
-            background: #fff;
             padding: 15px;
             border-radius: 2px;
+            background: #fff;            
             box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         }
         .volume-control {
@@ -52,16 +51,25 @@
             justify-content: space-between;
             align-items: center;
         }
+        .control-wrapper {
+            box-shadow: 0 1px 15px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+        }
     </style>
-        <div class="header">{{playerId}}</div>
-        <div class="controls">
-            <span class="volume-control">
-                <paper-slider min="0" max="100" value="{{volume}}" class="ctrl-slider"></paper-slider><paper-icon-button on-tap="setPlayerMute" icon="{{mutedIcon}}"></paper-icon-button>
-            </span>            
-            <paper-input id="videoId" name="videoId" label="Video url" class="ctrl-input"></paper-input>
-            <paper-button raised on-tap="setPlayerVideId">Set player</paper-button>
-            <paper-button raised on-tap="delPlayer">Delete player</paper-button>
-        </div>
+        <div class="control-wrapper">
+            <div class="header">{{playerId}}</div>
+            <div class="controls">
+                <span class="volume-control">
+                    <paper-slider min="0" max="100" value="{{volume}}" class="ctrl-slider"></paper-slider><paper-icon-button on-tap="setPlayerMute" icon="{{mutedIcon}}"></paper-icon-button>
+                </span>            
+                <paper-input id="videoId" name="videoId" label="Video url" class="ctrl-input"></paper-input>
+                <paper-button raised on-tap="setPlayerVideId">Set player</paper-button>
+                <paper-button raised on-tap="delPlayer">Delete player</paper-button>
+            </div>
+        </div>  
   </template>
   <script>
     Polymer({
