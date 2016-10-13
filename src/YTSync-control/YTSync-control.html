@@ -50,6 +50,7 @@
             background: #fff;
             box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             position: absolute;
+            transition: all .3s ease-in-out;
         }
         .volume-control {
             display: flex;
@@ -86,10 +87,16 @@
         .extra {
             left: 101%;
         }
+        .default.extra-active {
+            right: 101%;
+        }
+        .extra.extra-active {
+            left: auto;
+        }
     </style>
         <div class="control-wrapper">
             <!--<div class="header">{{playerId}}</div>-->
-            <div class="controls">
+            <div class$="controls default {{extraActiveClass}}">
                 <span class="volume-control">
                     <paper-slider min="0" max="100" value="{{volume}}" class="ctrl-slider"></paper-slider><paper-icon-button on-tap="setPlayerMute" icon="{{mutedIcon}}"></paper-icon-button>
                 </span>            
@@ -100,7 +107,7 @@
                     <span on-click="extraOptionsHandler">More controls</span>
                 </div>
             </div>
-             <div class="controls extra">
+             <div class$="controls extra {{extraActiveClass}}">
                 <div class="delay-control">
                     <paper-input id="videoDelay" name="videoDelay" label="Start time" class="ctrl-input"></paper-input><paper-button raised on-tap="setPlayerDelay">Set time</paper-button>
                 </div>
@@ -136,8 +143,14 @@
               type: Number,
               notify: false,
               observer: '_volumeChanged'
+          },
+          extraActiveClass: {
+              type: String,
+              notify: false,
+              value: 'extra-hidden'
           }
       },
+    _isExtraActive: false,
     delPlayer: function() {
         this.sources.delPlayer(this.playerId);
         this.remove();
@@ -170,7 +183,15 @@
         var match = url.match(regExp);
         return (match&&match[7].length==11)? match[7] : false;
     },
-
+    extraOptionsHandler: function(){
+        if(!this._isExtraActive){
+            this.extraActiveClass = 'extra-active';
+            this._isExtraActive = true;
+        }else {
+            this.extraActiveClass = 'extra-hidden';
+            this._isExtraActive = false;
+        }
+    },
     // Observers
     _volumeChanged: function(newValue, oldValue) {
         this.setPlayerVolume(newValue);
