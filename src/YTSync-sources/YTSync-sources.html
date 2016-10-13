@@ -63,7 +63,7 @@
                 }
             },
             delPlayer: function(id) {
-                Polymer.dom(this.root).removeChild(this.getPlayer(id));
+                this.getPlayer(id).remove();
             },
             setPlayerVideId: function(id, videoId) {
                 this.getPlayer(id).videoId = videoId;
