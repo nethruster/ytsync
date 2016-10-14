@@ -58,10 +58,29 @@
         background-repeat: no-repeat;
         width: 200px;
         height: 100%;
+        display: block;
+    }
+    #sm_overlay {
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #sm_overlay #logo{
+        height: 60px;
+        background-color: rgba(0,0,0,.2);
+        border-radius: 2px;
+    }
+    #sm_overlay p{
+        padding: 25px;
+        text-align: justify;
+        line-height: 1.4;
     }
     .title {
         margin-left: 65px!important;
-    }
+    }    
      @media (max-width: 780px) {
         #controls {
             display: none;
@@ -69,14 +88,24 @@
         #yt-app-action {
             justify-content: center;
         }
+        #main_container{
+            display: none;
+        }
+        #sm_overlay {
+            display: flex;
+        }
      }
     </style>
+        <div id="sm_overlay">
+            <span id="logo"></span>
+            <p>We're sorry, Youtusync will only work in devices with a screen width bigger than 780px.</p>
+        </div>
         <paper-toolbar>
-             <!--<div class="title">YoutuSync</div>-->
             <span id="logo" class="title"></span>
             <ytsync-control-menu id="control-menu"></ytsync-control-menu>
             <paper-button raised on-tap="addPlayer" id="addButton"><iron-icon icon="icons:add"></iron-icon>&nbsp;Add Video</paper-button>
         </paper-toolbar>
+        
         <div id="main_container">
             <div id="yt-app-action">
                 <ytsync-sources id="sources" class="layout horizontal wrap"></ytsync-sources>
