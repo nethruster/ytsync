@@ -50,7 +50,6 @@
             background: #fff;
             box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             position: absolute;
-            transition: all .3s ease-in-out;
         }
         .volume-control {
             display: flex;
@@ -71,11 +70,10 @@
             border-top: 1px solid rgba(0,0,0,.1);
             color: #7e8f8f;
             cursor: pointer;
-            height: 15px;
             overflow: hidden;
         }
         .extra-controls span {
-            padding: 5px;
+            padding: 10px 5px 0 5px;
             text-transform: uppercase;
             text-align: center;
             font-size: .8em;
@@ -84,14 +82,24 @@
         .extra-controls span:hover {
             color: #222;
         }
+        .extra, .default {
+            transition: all 600ms cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
         .extra {
-            left: 101%;
+            transform: translate3d(0, 0, 0);
+            transform: translateX(135%);
         }
         .default.extra-active {
-            right: 101%;
+            transform: translate3d(0, 0, 0);
+            transform: translateX(-140%);
         }
-        .extra.extra-active {
-            left: auto;
+        .extra.extra-active {   
+            transform: translate3d(0, 0, 0);
+            transform: translateX(0%);
+        }
+        .extra-label {
+            display: inline-block;
+            vertical-align: middle;
         }
     </style>
         <div class="control-wrapper">
@@ -104,7 +112,7 @@
                 <paper-button raised on-tap="setPlayerVideId">Set player</paper-button>
                 <paper-button raised on-tap="delPlayer">Delete player</paper-button>
                 <div class="extra-controls">
-                    <span on-click="extraOptionsHandler">More controls</span>
+                    <span on-click="extraOptionsHandler"><p class="extra-label">More controls</p>&nbsp;<iron-icon icon="icons:chevron-right"></iron-icon></span>
                 </div>
             </div>
              <div class$="controls extra {{extraActiveClass}}">
@@ -112,9 +120,9 @@
                     <paper-input id="videoDelay" name="videoDelay" label="Start time (in seconds)" class="ctrl-input"></paper-input><paper-button raised on-tap="setStartTime">Set time</paper-button>
                 </div>
                 <div class="extra-controls">
-                    <span on-click="extraOptionsHandler">Back</span>
+                    <span on-click="extraOptionsHandler"><iron-icon icon="icons:chevron-left"></iron-icon>&nbsp;<p class="extra-label">Back</ ></p>
                 </div>
-            </div>     
+            </div>
         </div>
            
   </template>
