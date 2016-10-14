@@ -36,19 +36,11 @@
         #videoDelay {
             display: inline-block;
         }
-        .header {
-            padding: 15px;
-            text-align: center;
-            color: #263238;
-            background: #f1f1f1;
-            border-radius: 2px 0 0px 2px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-        }
         .controls {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             padding: 15px 15px 10px 15px;
             border-radius: 2px;
             background: #fff;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             position: absolute;
         }
         .volume-control {
@@ -103,7 +95,6 @@
         }
     </style>
         <div class="control-wrapper">
-            <!--<div class="header">{{playerId}}</div>-->
             <div class$="controls default {{extraActiveClass}}">
                 <span class="volume-control">
                     <paper-slider min="0" max="100" value="{{volume}}" class="ctrl-slider"></paper-slider><paper-icon-button on-tap="setPlayerMute" icon="{{mutedIcon}}"></paper-icon-button>

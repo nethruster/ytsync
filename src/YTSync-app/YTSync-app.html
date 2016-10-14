@@ -52,10 +52,8 @@
         background-color: #404040;
     }
     #logo {
-        background-image: url('/img/logo.png');
+        background: url('/img/logo.png') no-repeat left center;
         background-size: contain;
-        background-position: left center;
-        background-repeat: no-repeat;
         width: 200px;
         height: 100%;
         display: block;
@@ -80,8 +78,8 @@
     }
     .title {
         margin-left: 65px!important;
-    }    
-     @media (max-width: 780px) {
+    }
+    @media (max-width: 780px) {
         #controls {
             display: none;
         }
@@ -94,7 +92,7 @@
         #sm_overlay {
             display: flex;
         }
-     }
+    }
     </style>
         <div id="sm_overlay">
             <span id="logo"></span>
@@ -105,10 +103,9 @@
             <ytsync-control-menu id="control-menu"></ytsync-control-menu>
             <paper-button raised on-tap="addPlayer" id="addButton"><iron-icon icon="icons:add"></iron-icon>&nbsp;Add Video</paper-button>
         </paper-toolbar>
-        
         <div id="main_container">
             <div id="yt-app-action">
-                <ytsync-sources id="sources" class="layout horizontal wrap"></ytsync-sources>
+                <ytsync-sources id="sources"></ytsync-sources>
                 <div id="controls"></div>
             </div>
         </div>        
