@@ -51,6 +51,14 @@
     #addButton {
         background-color: #404040;
     }
+    #logo {
+        background-image: url('/img/logo.png');
+        background-size: contain;
+        background-position: left center;
+        background-repeat: no-repeat;
+        width: 200px;
+        height: 100%;
+    }
     .title {
         margin-left: 65px!important;
     }
@@ -64,7 +72,8 @@
      }
     </style>
         <paper-toolbar>
-             <div class="title">YoutuSync</div>
+             <!--<div class="title">YoutuSync</div>-->
+            <span id="logo" class="title"></span>
             <ytsync-control-menu id="control-menu"></ytsync-control-menu>
             <paper-button raised on-tap="addPlayer" id="addButton"><iron-icon icon="icons:add"></iron-icon>&nbsp;Add Video</paper-button>
         </paper-toolbar>
