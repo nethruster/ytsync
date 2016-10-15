@@ -40,6 +40,12 @@
             width: 20px;
             height: 20px;
         }
+        paper-button:hover #setIcon {
+            color: #4CAF50;
+        }
+        paper-button:hover #delIcon {
+            color: #e62117;
+        }
         #invalidUrl, #invalidTime{
             --paper-toast-background-color: #fff;
             --paper-toast-color: #ff130f;
@@ -119,8 +125,8 @@
                     <paper-slider min="0" max="100" value="{{volume}}" class="ctrl-slider"></paper-slider><paper-icon-button on-tap="setPlayerMute" icon="{{mutedIcon}}" class$="tooltip dark {{stndMuteTipClass}}"></paper-icon-button>
                 </span>
                 <paper-input id="videoId" name="videoId" label="Video url" class="ctrl-input"></paper-input>
-                <paper-button raised on-tap="setPlayerVideId"><iron-icon icon="icons:check"></iron-icon>&nbsp;Set Video</paper-button>
-                <paper-button raised on-tap="delPlayer"><iron-icon icon="icons:delete"></iron-icon>&nbsp;Delete Player</paper-button>
+                <paper-button raised on-tap="setPlayerVideId"><iron-icon icon="icons:check" id="setIcon"></iron-icon>&nbsp;Set Video</paper-button>
+                <paper-button raised on-tap="delPlayer"><iron-icon icon="icons:delete" id="delIcon"></iron-icon>&nbsp;Delete Player</paper-button>
                 <div class="extra-controls">
                     <span on-click="extraOptionsHandler"><p class="extra-label">More controls</p>&nbsp;<iron-icon icon="icons:chevron-right"></iron-icon></span>
                 </div>
