@@ -1,5 +1,5 @@
 /* CUSTOM INIT CSS */button,hr,input{overflow:visible}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}.clearfix,audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects;text-decoration:none;color:inherit}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}small{font-size:80%}sub{bottom:-.25em;vertical-align:text-bottom}sup{top:-.5em;vertical-align:text-top}img{border-style:none;-ms-interpolation-mode:bicubic}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace}hr{box-sizing:content-box;height:0;margin:-8px auto 11px}button,input,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}legend{color:inherit;display:table;max-width:100%;white-space:normal;margin-top:-.2em;margin-bottom:1em;margin-left:-.5em}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}body{margin:0;line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}h1,h2,h3,h4,h5,h6,li,ol,p,ul{padding:0;margin:0}fieldset{padding-top:0}textarea{overflow:auto}
-/* CUSTOM CSS  */
+
 body, 
 html {
     width: 100vw;
@@ -9,6 +9,8 @@ html {
     background-color: #eee;
     background-image: url('/img/bg.png');
 }
+
+/* FOOTER */
 footer{
     background-color: #252525;
     margin-top: 25px;
@@ -37,6 +39,8 @@ footer{
 #footer-content a:hover {
     color: #eceff1;
 }
+
+/* HOVER TOOLTIP */
 .tooltip::after, .tooltip::before {
     content: '';
     position: absolute;

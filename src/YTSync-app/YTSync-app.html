@@ -4,6 +4,7 @@
 <link rel="import" href="../YTSync-control-menu/YTSync-control-menu.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
 <dom-module id="ytsync-app">
     <template>
@@ -109,12 +110,13 @@
                 <ytsync-sources id="sources"></ytsync-sources>
                 <div id="controls"></div>
             </div>
-        </div>        
+        </div>
+        <paper-toast id="maxPlayers" text="You've reached the max ammount of players"></paper-toast>
     </template>
 
     <script>
         Polymer({
-            is: 'ytsync-app',
+            is: 'ytsync-app',    
             attached: function() {
                 this.$$("#control-menu").sourcesPlayers = this.$$("#sources");
                 this.$$("#control-menu").controlsWrapper = this.$$("#controls");
@@ -122,6 +124,7 @@
             addPlayer: function() {
                 var player = this.$$("#sources").addPlayer();
                 if(player === false) {
+                    this.$.maxPlayers.open();
                     return;
                 }
                 var control = document.createElement("ytsync-control");
