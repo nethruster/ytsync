@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/google-youtube/google-youtube.html">
+
 <dom-module id="ytsync-sources">
     <template>
         <style>
@@ -19,7 +20,7 @@
                 background-size: contain;
                 width: 100%;
             }
-        </style>       
+        </style>
     </template>
 
     <script>
@@ -92,7 +93,7 @@
                     player.seekTo(0);
                     player.pause();
                     return 0;
-                }         
+                }
             },
             setPlayersStart: function(second) {
                 players = this.players();

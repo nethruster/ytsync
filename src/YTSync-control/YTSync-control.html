@@ -7,6 +7,7 @@
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/av-icons.html">
 <link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+
 <dom-module id="ytsync-control">
   <template>
     <style>
@@ -41,15 +42,15 @@
         }
         #invalidUrl, #invalidTime{
             --paper-toast-background-color: #fff;
-             --paper-toast-color: #ff130f;
-             font-size: 1em;
-             font-weight: 300;
+            --paper-toast-color: #ff130f;
+            font-size: 1em;
+            font-weight: 300;
         }
         #videoAdded{
             --paper-toast-background-color: #4CAF50;
-             --paper-toast-color: #fff;
-              font-size: 1em;
-              font-weight: 300;
+            --paper-toast-color: #fff;
+            font-size: 1em;
+            font-weight: 300;
         }
         #videoDelay {
             display: inline-block;
@@ -103,7 +104,7 @@
             transform: translate3d(0, 0, 0);
             transform: translateX(-140%);
         }
-        .extra.extra-active {   
+        .extra.extra-active {
             transform: translate3d(0, 0, 0);
             transform: translateX(0%);
         }
@@ -116,7 +117,7 @@
             <div class$="controls default {{extraActiveClass}}">
                 <span class="volume-control">
                     <paper-slider min="0" max="100" value="{{volume}}" class="ctrl-slider"></paper-slider><paper-icon-button on-tap="setPlayerMute" icon="{{mutedIcon}}" class$="tooltip dark {{stndMuteTipClass}}"></paper-icon-button>
-                </span>            
+                </span>
                 <paper-input id="videoId" name="videoId" label="Video url" class="ctrl-input"></paper-input>
                 <paper-button raised on-tap="setPlayerVideId"><iron-icon icon="icons:check"></iron-icon>&nbsp;Set Video</paper-button>
                 <paper-button raised on-tap="delPlayer"><iron-icon icon="icons:delete"></iron-icon>&nbsp;Delete Player</paper-button>
@@ -174,13 +175,13 @@
             notify: false,
             value: 0,
             observer: '_volumeChanged'
-        }           
+        }
       },
     _whenMutedVolume: 100,
     _isExtraActive: false,
     delPlayer: function() {
         this.sources.delPlayer(this.playerId);
-        this.remove();       
+        this.remove();
     },
     setPlayerVideId: function() {
         console.log(this.stndMuteTipClass);
@@ -189,7 +190,7 @@
             this.sources.setPlayerVideId(this.playerId, videoId);
             this.volume = 100;
             this.$.videoAdded.open()
-        }      
+        }
     },
     setPlayerVolume: function(volume) {
         this.sources.setPlayerVolume(this.playerId, volume);
@@ -243,11 +244,11 @@
         if(newValue === 0){
             if(this.isMuted === false){
                 this.setPlayerMute();
-            }            
+            }
         }else {
             if(this.isMuted === true){
                 this.setPlayerMute();
-            }  
+            }
         }
     }
     });

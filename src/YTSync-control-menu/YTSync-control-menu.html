@@ -3,6 +3,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/iron-icons/av-icons.html">
+
 <dom-module id="ytsync-control-menu">
     <template>
     <style>
@@ -11,8 +12,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-        }      
-    </style>   
+        }
+    </style>
     <paper-icon-button icon="av:play-arrow" on-tap="playAll" alt="Play All Videos" class="tooltip play-all"></paper-icon-button>
     <paper-icon-button icon="av:pause" on-tap="pauseAll" alt="Pause All Videos" class="tooltip pause-all"></paper-icon-button>
     <paper-icon-button icon="{{mutedIcon}}" on-tap="muteAll" alt="Mute All Videos" class$="tooltip {{muteTipClass}}"></paper-icon-button>    

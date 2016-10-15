@@ -1,11 +1,11 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../YTSync-sources/YTSync-sources.html">
 <link rel="import" href="../YTSync-control-menu/YTSync-control-menu.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
-<style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+
+<style is="custom-style"></style>
 <dom-module id="ytsync-app">
     <template>
     <style>
@@ -22,11 +22,11 @@
         z-index: 5;
     }
     paper-button {
-            padding: 0.45em 0.57em;
+        padding: 0.45em 0.57em;
     }
      #maxPlayers{
-              font-size: 1em;
-              font-weight: 300;
+        font-size: 1em;
+        font-weight: 300;
     }
     #main_container {
         position: relative;
@@ -35,12 +35,12 @@
         align-items: flex-start;
         justify-content: space-around;
         width: 100vw;
-        margin-top: 90px;        
+        margin-top: 90px;
     }
     #yt-app-action {
         width: 100%;
         height: auto;
-        max-width: 1000px;        
+        max-width: 1000px;
         position: relative;
         display: flex;
         flex-direction: row-reverse;
@@ -83,7 +83,7 @@
         border-radius: 2px;
         text-align: justify;
         line-height: 1.4;
-        box-shadow: 0 1px 15px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);        
+        box-shadow: 0 1px 15px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     }
     .title {
         margin: 0!important;
@@ -120,7 +120,7 @@
 
     <script>
         Polymer({
-            is: 'ytsync-app',    
+            is: 'ytsync-app',
             attached: function() {
                 this.$$("#control-menu").sourcesPlayers = this.$$("#sources");
                 this.$$("#control-menu").controlsWrapper = this.$$("#controls");
