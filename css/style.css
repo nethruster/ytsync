@@ -35,3 +35,63 @@ footer{
 #footer-content a:hover {
     color: #eceff1;
 }
+.tooltip::after, .tooltip::before {
+    content: '';
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    transition: opacity .3s ease-in-out, margin .3s ease-in-out, visibility .3s ease-in-out;
+    visibility: 0;
+    opacity: 0;
+}
+.tooltip::before{
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: rgba(255,255,255,.9);
+    margin-top: 9px;
+    z-index: 2;
+    left: 10px;
+}
+.tooltip::after {
+    height: auto;
+    width: inherit;
+    margin-top: 5px;
+    color: #000;
+    background: rgba(255,255,255,.9);
+    left: -20%;
+    padding: 5px 15px 5px 15px;
+    border-radius: 2px;
+    box-shadow: 0 1px 15px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);    
+}
+.tooltip:hover::after, .tooltip:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+.tooltip:hover::after {
+    margin-top: 15px;
+}
+.tooltip:hover::before {
+    margin-top: 19px;    
+}
+.tooltip.pause-all::after{
+    content: 'Pause All Videos';
+    width: 125px;
+    left: -125%;
+}
+.tooltip.play-all::after{
+    content: 'Play All Videos';
+    width: 110px;
+    left: -110%;
+}
+.tooltip.mute-all::after{
+    content: 'Mute All Videos';
+    width: 125px;
+    left: -125%;
+}
+.tooltip.unmute-all::after{
+    content: 'Unmute All Videos';
+    width: 140px;
+    left: -140%;
+}
