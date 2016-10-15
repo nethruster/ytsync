@@ -30,7 +30,7 @@
         align-items: flex-start;
         justify-content: space-around;
         width: 100vw;
-        margin-top: 90px;
+        margin-top: 90px;        
     }
     #yt-app-action {
         width: 100%;
@@ -61,7 +61,7 @@
     #sm_overlay {
         display: none;
         width: 100vw;
-        height: 100vh;
+        height: calc(100vh - 90px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -84,14 +84,11 @@
         margin-left: 65px!important;
     }
     @media (max-width: 780px) {
-        #controls {
+        paper-toolbar, #main_container,  #controls{
             display: none;
         }
         #yt-app-action {
             justify-content: center;
-        }
-        #main_container{
-            display: none;
         }
         #sm_overlay {
             display: flex;
