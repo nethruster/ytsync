@@ -12,7 +12,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png">
   </head>
   <body>
-    <ytsync-app></ytsync-app>
+    <ytsync-app id="app"></ytsync-app>
     <footer>
         <div id="footer-container">
             <p id="footer-content">
@@ -20,5 +20,12 @@
             </p>
         </div>
     </footer>
+    <script>
+        window.addEventListener('resize', function(e) {
+            if(window.innerWidth <= 780) {
+                document.getElementById('app').$$("#control-menu").pauseAll();;
+            }
+        });
+    </script>
   </body>
 </html>
