@@ -65,6 +65,13 @@ footer{
     border-radius: 2px;
     box-shadow: 0 1px 15px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);    
 }
+.tooltip.dark::after {
+    background: rgba(55, 71, 79, .9);
+    color: #fff;
+}
+.tooltip.dark::before {
+     border-bottom-color: rgba(55, 71, 79, .9);
+}
 .tooltip:hover::after, .tooltip:hover::before {
   opacity: 1;
   visibility: visible;
@@ -94,4 +101,14 @@ footer{
     content: 'Unmute All Videos';
     width: 140px;
     left: -140%;
+}
+.tooltip.muted::after{
+    content: 'Unmute Video';
+    width: 105px;
+    left: -105%;
+}
+.tooltip.unmuted::after{
+    content: 'Mute Video';
+    width: 90px;
+    left: -90%;   
 }

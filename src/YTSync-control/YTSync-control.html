@@ -97,7 +97,7 @@
         <div class="control-wrapper">
             <div class$="controls default {{extraActiveClass}}">
                 <span class="volume-control">
-                    <paper-slider min="0" max="100" value="{{volume}}" class="ctrl-slider"></paper-slider><paper-icon-button on-tap="setPlayerMute" icon="{{mutedIcon}}"></paper-icon-button>
+                    <paper-slider min="0" max="100" value="{{volume}}" class="ctrl-slider"></paper-slider><paper-icon-button on-tap="setPlayerMute" icon="{{mutedIcon}}" class$="tooltip dark {{stndMuteTipClass}}"></paper-icon-button>
                 </span>            
                 <paper-input id="videoId" name="videoId" label="Video url" class="ctrl-input"></paper-input>
                 <paper-button raised on-tap="setPlayerVideId">Set player</paper-button>
@@ -147,6 +147,11 @@
               type: String,
               notify: false,
               value: 'extra-hidden'
+          },
+          stndMuteTipClass: {
+              type: String,
+              notify: false,
+              value: 'unmuted'
           }
       },
     _isExtraActive: false,
@@ -166,10 +171,12 @@
         if(!this.isMuted){
             this.sources.setPlayerMute(this.playerId, true);
             this.mutedIcon = 'av:volume-off';
+            this.stndMuteTipClass = 'muted';
             this.isMuted = true;
         }else {
             this.sources.setPlayerMute(this.playerId, false);
             this.mutedIcon = 'av:volume-up';
+            this.stndMuteTipClass = 'unmuted';
             this.isMuted = false;
         }
     },
