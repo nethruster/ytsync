@@ -48,7 +48,7 @@ footer{
     justify-content: center;
     align-items: center;    
     transition: opacity .3s ease-in-out, margin .3s ease-in-out, visibility .3s ease-in-out;
-    visibility: 0;
+    visibility: hidden;
     opacity: 0;
 }
 .tooltip::before{

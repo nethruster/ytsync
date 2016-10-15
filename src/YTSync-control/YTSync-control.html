@@ -142,38 +142,39 @@
     Polymer({
       is: 'ytsync-control',
       properties: {
-          sources: {
-              type: Object,
-              notify: false
-          },
-          playerId: {
-              type: Number,
-              notify: false
-          },
-          isMuted: {
-              type: Boolean,
-              value: false
-          },
-          mutedIcon: {
-              type: String,
-              notify: false,
-              value: 'av:volume-up'
-          },
-          volume: {
-              type: Number,
-              notify: false,
-              observer: '_volumeChanged'
-          },
-          extraActiveClass: {
-              type: String,
-              notify: false,
-              value: 'extra-hidden'
-          },
-          stndMuteTipClass: {
-              type: String,
-              notify: false,
-              value: 'unmuted'
-          }
+        sources: {
+            type: Object,
+            notify: false
+        },
+        playerId: {
+            type: Number,
+            notify: false
+        },
+        isMuted: {
+            type: Boolean,
+            value: true
+        },
+        mutedIcon: {
+            type: String,
+            notify: false,
+            value: 'av:volume-off'
+        },
+        stndMuteTipClass: {
+            type: String,
+            notify: false,
+            value: 'muted'
+        },
+        extraActiveClass: {
+            type: String,
+            notify: false,
+            value: 'extra-hidden'
+        },
+        volume: {
+            type: Number,
+            notify: false,
+            value: 0,
+            observer: '_volumeChanged'
+        }           
       },
     _whenMutedVolume: 100,
     _isExtraActive: false,
@@ -182,6 +183,7 @@
         this.remove();       
     },
     setPlayerVideId: function() {
+        console.log(this.stndMuteTipClass);
         var videoId = this.parseUrl(this.$.videoId.value);
         if(videoId){
             this.sources.setPlayerVideId(this.playerId, videoId);
