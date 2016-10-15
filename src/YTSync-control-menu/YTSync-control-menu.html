@@ -13,11 +13,11 @@
             justify-content: center;
         }      
     </style>   
-    <paper-icon-button icon="av:play-arrow" on-tap="playAll" alt="Play All Videos"></paper-icon-button>
-    <paper-icon-button icon="av:pause" on-tap="pauseAll" alt="Pause All Videos"></paper-icon-button>
-    <paper-icon-button icon="{{mutedIcon}}" on-tap="muteAll" alt="Mute All Videos"></paper-icon-button>
-    
+    <paper-icon-button icon="av:play-arrow" on-tap="playAll" alt="Play All Videos" class="tooltip play-all"></paper-icon-button>
+    <paper-icon-button icon="av:pause" on-tap="pauseAll" alt="Pause All Videos" class="tooltip pause-all"></paper-icon-button>
+    <paper-icon-button icon="{{mutedIcon}}" on-tap="muteAll" alt="Mute All Videos" class$="tooltip {{muteTipClass}}"></paper-icon-button>    
   </template>
+  
     <script>
         Polymer({
             is: 'ytsync-control-menu',
@@ -37,6 +37,11 @@
                     notify: false,
                     value: 'av:volume-up'
                 },
+                muteTipClass: {
+                    type: String,
+                    notify: false,
+                    value: 'mute-all'
+                }
             },
             _allMuted: false,
             pauseAll: function() {
@@ -47,9 +52,10 @@
             },
             muteAll: function(){
                 var controls = Polymer.dom(this.controlsWrapper).querySelectorAll("ytsync-control");
-                 if(!this._allMuted){
+                if(!this._allMuted){
                     this.sourcesPlayers.setPlayersMute(true);
                     this.mutedIcon = 'av:volume-off';
+                    this.muteTipClass = 'unmute-all';
                     this._allMuted = true;
                     for (i = controls.length -1; i >= 0; i--) {
                         if (controls[i].isMuted === false) {
@@ -59,6 +65,7 @@
                 }else {
                     this.sourcesPlayers.setPlayersMute(false);
                     this.mutedIcon = 'av:volume-up';
+                    this.muteTipClass = 'mute-all';
                     this._allMuted = false;
                     for (i = controls.length -1; i >= 0; i--) {
                         if (controls[i].isMuted === true) {

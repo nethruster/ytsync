@@ -1,5 +1,5 @@
 /* CUSTOM INIT CSS */button,hr,input{overflow:visible}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}.clearfix,audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects;text-decoration:none;color:inherit}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}small{font-size:80%}sub{bottom:-.25em;vertical-align:text-bottom}sup{top:-.5em;vertical-align:text-top}img{border-style:none;-ms-interpolation-mode:bicubic}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace}hr{box-sizing:content-box;height:0;margin:-8px auto 11px}button,input,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}legend{color:inherit;display:table;max-width:100%;white-space:normal;margin-top:-.2em;margin-bottom:1em;margin-left:-.5em}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}body{margin:0;line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}h1,h2,h3,h4,h5,h6,li,ol,p,ul{padding:0;margin:0}fieldset{padding-top:0}textarea{overflow:auto}
-/* CUSTOM CSS  */
+
 body, 
 html {
     width: 100vw;
@@ -9,6 +9,8 @@ html {
     background-color: #eee;
     background-image: url('/img/bg.png');
 }
+
+/* FOOTER */
 footer{
     background-color: #252525;
     margin-top: 25px;
@@ -26,6 +28,8 @@ footer{
     max-width: 70%;
     padding: 10px;
     display: inline-block;
+    text-align: center;
+    line-height: 1.2;
 }
 
 #footer-content a {
@@ -34,4 +38,84 @@ footer{
 }
 #footer-content a:hover {
     color: #eceff1;
+}
+
+/* HOVER TOOLTIP */
+.tooltip::after, .tooltip::before {
+    content: '';
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    transition: opacity .3s ease-in-out, margin .3s ease-in-out, visibility .3s ease-in-out;
+    visibility: 0;
+    opacity: 0;
+}
+.tooltip::before{
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: rgba(255,255,255,.9);
+    margin-top: 9px;
+    z-index: 2;
+    left: 10px;
+}
+.tooltip::after {
+    height: auto;
+    width: inherit;
+    margin-top: 5px;
+    color: #000;
+    background: rgba(255,255,255,.9);
+    left: -20%;
+    padding: 5px 15px 5px 15px;
+    border-radius: 2px;
+    box-shadow: 0 1px 15px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    font-weight: 300;
+}
+.tooltip.dark::after {
+    background: rgba(55, 71, 79, .9);
+    color: #fff;
+}
+.tooltip.dark::before {
+     border-bottom-color: rgba(55, 71, 79, .9);
+}
+.tooltip:hover::after, .tooltip:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+.tooltip:hover::after {
+    margin-top: 15px;
+}
+.tooltip:hover::before {
+    margin-top: 19px;    
+}
+.tooltip.pause-all::after{
+    content: 'Pause All Videos';
+    width: 125px;
+    left: -125%;
+}
+.tooltip.play-all::after{
+    content: 'Play All Videos';
+    width: 110px;
+    left: -110%;
+}
+.tooltip.mute-all::after{
+    content: 'Mute All Videos';
+    width: 125px;
+    left: -125%;
+}
+.tooltip.unmute-all::after{
+    content: 'Unmute All Videos';
+    width: 140px;
+    left: -140%;
+}
+.tooltip.muted::after{
+    content: 'Unmute Video';
+    width: 105px;
+    left: -105%;
+}
+.tooltip.unmuted::after{
+    content: 'Mute Video';
+    width: 90px;
+    left: -90%;   
 }
