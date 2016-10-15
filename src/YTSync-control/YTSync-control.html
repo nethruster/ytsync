@@ -35,14 +35,18 @@
             background-color: #455a64;
             border: 2px solid #455a64;
         }
+        paper-button iron-icon {
+            width: 20px;
+            height: 20px;
+        }
         #invalidUrl, #invalidTime{
-             --paper-toast-background-color: #e62117;
-             --paper-toast-color: #fff;
+            --paper-toast-background-color: #fff;
+             --paper-toast-color: #ff130f;
              font-size: 1em;
              font-weight: 300;
         }
         #videoAdded{
-             --paper-toast-background-color: #4CAF50;
+            --paper-toast-background-color: #4CAF50;
              --paper-toast-color: #fff;
               font-size: 1em;
               font-weight: 300;
@@ -114,8 +118,8 @@
                     <paper-slider min="0" max="100" value="{{volume}}" class="ctrl-slider"></paper-slider><paper-icon-button on-tap="setPlayerMute" icon="{{mutedIcon}}" class$="tooltip dark {{stndMuteTipClass}}"></paper-icon-button>
                 </span>            
                 <paper-input id="videoId" name="videoId" label="Video url" class="ctrl-input"></paper-input>
-                <paper-button raised on-tap="setPlayerVideId">Set player</paper-button>
-                <paper-button raised on-tap="delPlayer">Delete player</paper-button>
+                <paper-button raised on-tap="setPlayerVideId"><iron-icon icon="icons:check"></iron-icon>&nbsp;Set Video</paper-button>
+                <paper-button raised on-tap="delPlayer"><iron-icon icon="icons:delete"></iron-icon>&nbsp;Delete Player</paper-button>
                 <div class="extra-controls">
                     <span on-click="extraOptionsHandler"><p class="extra-label">More controls</p>&nbsp;<iron-icon icon="icons:chevron-right"></iron-icon></span>
                 </div>
@@ -131,7 +135,7 @@
         </div>
         <paper-toast id="invalidUrl" text="The url is invalid or empty"></paper-toast>
         <paper-toast id="invalidTime" text="The value is empty or it's not a number"></paper-toast>
-        <paper-toast id="videoAdded" text="Video Added!"></paper-toast>
+        <paper-toast id="videoAdded" text="Video Set!"></paper-toast>
   </template>
   
   <script>
@@ -171,6 +175,7 @@
               value: 'unmuted'
           }
       },
+    _whenMutedVolume: 100,
     _isExtraActive: false,
     delPlayer: function() {
         this.sources.delPlayer(this.playerId);
@@ -193,11 +198,19 @@
             this.mutedIcon = 'av:volume-off';
             this.stndMuteTipClass = 'muted';
             this.isMuted = true;
+
+            this._whenMutedVolume = this.volume;
+            this.volume = 0;
         }else {
             this.sources.setPlayerMute(this.playerId, false);
             this.mutedIcon = 'av:volume-up';
             this.stndMuteTipClass = 'unmuted';
             this.isMuted = false;
+            
+            if(this.volume === 0) {
+                this.volume = this._whenMutedVolume;
+            }
+            this._whenMutedVolume = 100;
         }
     },
     setStartTime: function(){
@@ -225,6 +238,15 @@
     // Observers
     _volumeChanged: function(newValue, oldValue) {
         this.setPlayerVolume(newValue);
+        if(newValue === 0){
+            if(this.isMuted === false){
+                this.setPlayerMute();
+            }            
+        }else {
+            if(this.isMuted === true){
+                this.setPlayerMute();
+            }  
+        }
     }
     });
   </script>
