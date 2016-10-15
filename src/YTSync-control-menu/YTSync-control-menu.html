@@ -52,17 +52,19 @@
                     this.mutedIcon = 'av:volume-off';
                     this._allMuted = true;
                     for (i = controls.length -1; i >= 0; i--) {
-                        controls[i].mutedIcon = 'av:volume-off';
-                        controls[i].isMuted = true;
+                        if (controls[i].isMuted === false) {
+                            controls[i].setPlayerMute();
+                        }
                     } 
                 }else {
                     this.sourcesPlayers.setPlayersMute(false);
                     this.mutedIcon = 'av:volume-up';
                     this._allMuted = false;
                     for (i = controls.length -1; i >= 0; i--) {
-                        controls[i].mutedIcon = 'av:volume-up';
-                        controls[i].isMuted = false;
-                    }
+                        if (controls[i].isMuted === true) {
+                            controls[i].setPlayerMute();
+                        }
+                    } 
                 }
             }
         });
