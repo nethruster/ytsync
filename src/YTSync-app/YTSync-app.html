@@ -11,6 +11,7 @@
     <style>
     :host {
         display: block;
+        position: relative;
         flex: 1;
     }
     paper-toolbar {
@@ -56,6 +57,28 @@
     #addButton {
         background-color: #404040;
     }
+    #buttonDemo {
+        background-color: #404040;
+        color: #fff;
+        width: 100px;
+        height: 35px;
+        font-size: .7em;
+        vertical-align: middle;
+    }
+    .del{
+        width: 125px!important;
+    }
+    paper-slider::shadow #sliderBar::shadow #primaryProgress {
+        background-color: #607d8b;
+    }
+    paper-slider::shadow #sliderKnob > #sliderKnobInner{
+        background-color: #455a64;
+        border: 2px solid #455a64;
+    }
+    #demo-slider {
+        display: inline-flex;
+        vertical-align: middle;
+    }
     #logo {
         background: url('/img/logo.png') no-repeat left center;
         background-size: contain;
@@ -77,16 +100,57 @@
         border-radius: 2px;
     }
     #sm_overlay p{
-        padding: 15px;
+        padding: 30px;
         background: #fff;
-        margin: 15px;
         border-radius: 2px;
         text-align: justify;
         line-height: 1.4;
         box-shadow: 0 1px 15px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     }
+    #no-vid-wrapper {
+        width: 100vw;
+        height: 100%;
+        top: 60px;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #no-vid-wrapper.hide {
+        display: none;
+    }
+    #no-vid-card {
+        background: #fff;
+        border-radius: 2px;
+        max-width: 700px;
+        box-shadow: 0 1px 15px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+    #no-vid-card div {
+        padding: 25px;
+        text-align: justify;
+        line-height: 1.5;
+    }
+    #no-vid-card ul {
+        padding: 0 25px 0 25px;
+    }
+    .no-vid-card-header {
+        box-shadow: 0 1px 15px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        background: url(/img/logo.png) no-repeat center center;
+        background-size: contain;
+        height: 50px;
+        display: block;
+        top: 0;
+        margin: 0 auto;
+        background-color: rgba(37,37,37,.9);
+        border-radius: 2px;
+    }
     .title {
         margin: 0!important;
+    }
+    .small {
+        font-size: .8em;
+        display: block;
+        text-align: center;
     }
     @media (max-width: 780px) {
         paper-toolbar, #main_container,  #controls{
@@ -113,6 +177,26 @@
             <div id="yt-app-action">
                 <ytsync-sources id="sources"></ytsync-sources>
                 <div id="controls"></div>
+            </div>
+        </div>
+        <div id="no-vid-wrapper" class$="{{showIntro}}">           
+            <div id="no-vid-card">
+                <span class="no-vid-card-header"></span>
+                <div>
+                    YTSync allows you to watch or listen at up to 4 Youtube videos at the same time, here is how it works and what you can do:
+                    <br><br>
+                    To add a new video click on the <paper-button raised id="buttonDemo"><iron-icon icon="icons:add"></iron-icon>&nbsp;Add Video</paper-button> button at the top right of the page.
+                    <br>
+                    For every video you add, there will appear it's corresponding controls. This is how they work:<br><br>
+                    <ul>
+                        <li>- Write or paste a valid youtube video url and then click <paper-button raised id="buttonDemo"><iron-icon icon="icons:check"></iron-icon>&nbsp;Set Video</paper-button> to initialize the player with your desired video.</li>
+                        <li>- Use <paper-slider min="0" max="80" value="40" id="demo-slider"></paper-slider> to control the volume.</li>
+                        <li>- Click <paper-icon-button icon="av:volume-up"></paper-icon-button> to mute the volume and <paper-icon-button icon="av:volume-off"></paper-icon-button> to restore it.</li>
+                        <li>- Click <paper-button raised id="buttonDemo" class="del"><iron-icon icon="icons:delete"></iron-icon>&nbsp;Delete Player</paper-button> to delete the entire player.</li>
+                    </ul>
+                    <br>
+                    <span class="small">YTSync only works with Youtube videos.</span>
+                </div>
             </div>
         </div>
         <paper-toast id="maxPlayers" text="You've reached the maximum amount of players"></paper-toast>

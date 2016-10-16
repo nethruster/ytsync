@@ -190,7 +190,6 @@
         this.remove();
     },
     setPlayerVideId: function() {
-        console.log(this.stndMuteTipClass);
         var videoId = this.parseUrl(this.$.videoId.value);
         if(videoId){
             this.sources.setPlayerVideId(this.playerId, videoId);
