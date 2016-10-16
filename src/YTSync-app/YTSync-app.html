@@ -180,7 +180,7 @@
                 <div id="controls"></div>
             </div>
         </div>
-        <div id="no-vid-wrapper" class$="{{showIntro}}">           
+        <div id="no-vid-wrapper" class$="{{showIntroStatus}}">           
             <div id="no-vid-card">
                 <span class="no-vid-card-header"></span>
                 <div>
@@ -206,20 +206,37 @@
     <script>
         Polymer({
             is: 'ytsync-app',
+            properties: {
+                showIntroStatus: {
+                    Type: String,
+                    value: 'show',
+                    notify: false
+                }
+            },
             attached: function() {
                 this.$$("#control-menu").sourcesPlayers = this.$$("#sources");
                 this.$$("#control-menu").controlsWrapper = this.$$("#controls");
+            },
+            listeners: {
+                'new-player' : 'hideIntro',
+                'no-players' : 'showIntro'
             },
             addPlayer: function() {
                 var player = this.$$("#sources").addPlayer();
                 if(player === false) {
                     this.$.maxPlayers.open();
-                    return;
+                    return false;
                 }
                 var control = document.createElement("ytsync-control");
                 control.sources = this.$$("#sources");
                 control.playerId = player;
                 Polymer.dom(this.$$("#controls")).appendChild(control);
+            },
+            hideIntro: function(e) {
+                this.showIntroStatus = "hide";
+            },
+            showIntro: function(e) {
+                this.showIntroStatus = "show";
             }
         });
     </script>

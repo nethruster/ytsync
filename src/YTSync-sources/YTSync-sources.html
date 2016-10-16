@@ -55,6 +55,7 @@
             },
             addPlayer: function() {
                 if (this.players().length < 4) {
+                    this.fire("new-player"); 
                     var player = document.createElement("google-youtube");
                     Polymer.dom(this.root).appendChild(player);
                     player.chromeless = true;
@@ -68,6 +69,7 @@
             },
             delPlayer: function(id) {
                 Polymer.dom(this.root).removeChild(this.getPlayer(id));
+                this.checkNoPlayers();
             },
             setPlayerVideId: function(id, videoId) {
                 this.getPlayer(id).videoId = videoId;
@@ -106,6 +108,11 @@
                 players = this.players();
                 for(i = players.length - 1; i >= 0; i--) {
                     this.setPlayerMute(players[i].intId, status);
+                }
+            },
+            checkNoPlayers: function() {
+                if(this.players().length === 0) {
+                    this.fire('no-players');
                 }
             }
         });
