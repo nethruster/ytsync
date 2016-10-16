@@ -233,7 +233,9 @@
                 Polymer.dom(this.$$("#controls")).appendChild(control);
             },
             hideIntro: function(e) {
-                this.showIntroStatus = "hide";
+                if(this.showIntroStatus !== "hide") {
+                    this.showIntroStatus = "hide";
+                }
             },
             showIntro: function(e) {
                 this.showIntroStatus = "show";
