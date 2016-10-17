@@ -8,6 +8,8 @@ html {
     flex-direction: column;
     background-color: #eee;
     background-image: url('/img/bg.png');
+    overflow: hidden;
+    transition: all .4s ease-in-out;
 }
 
 /* FOOTER */
@@ -117,4 +119,9 @@ footer{
     content: 'Mute Video';
     width: 90px;
     left: -90%;   
+}
+/* PLAYER FADE ANIMATION */
+@keyframes fade {
+    from {opacity: 0}
+    to {opacity: 1}
 }
