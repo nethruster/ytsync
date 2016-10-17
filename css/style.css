@@ -8,14 +8,12 @@ html {
     flex-direction: column;
     background-color: #eee;
     background-image: url('/img/bg.png');
-    overflow: hidden;
     transition: all .4s ease-in-out;
 }
 
 /* FOOTER */
 footer{
     background-color: #252525;
-    margin-top: 25px;
 }
 #footer-container {
     height: 100%;

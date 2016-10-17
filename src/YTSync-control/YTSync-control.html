@@ -247,14 +247,17 @@
     },
     // Observers
     _volumeChanged: function(newValue, oldValue) {
-        this.setPlayerVolume(newValue);
-        if(newValue === 0){
-            if(this.isMuted === false){
-                this.setPlayerMute();
-            }
-        }else {
-            if(this.isMuted === true){
-                this.setPlayerMute();
+        var videoId = this.parseUrl(this.$.videoId.value);
+        if(videoId){
+            this.setPlayerVolume(newValue);
+            if(newValue === 0){
+                if(this.isMuted === false){
+                    this.setPlayerMute();
+                }
+            }else {
+                if(this.isMuted === true){
+                    this.setPlayerMute();
+                }
             }
         }
     }
