@@ -9,6 +9,7 @@ html {
     background-color: #eee;
     background-image: url('/img/bg.png');
     transition: all .4s ease-in-out;
+    overflow-x: hidden;
 }
 
 /* FOOTER */

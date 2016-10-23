@@ -2,6 +2,12 @@
 
 YTSync is a web app desined to play multiple yotube videos at the same time
 
+## Install bower components
+
+```
+$ bower install
+```
+
 ## Install the Polymer-CLI
 
 First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
