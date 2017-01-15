@@ -1,0 +1,13 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/YTSync-app/YTSync-app.html",
+  "sources": [
+    "src/**/*",
+    "img/**/*",
+    "css/**/*",
+    "bower.json"
+  ],
+  "includeDependencies": [
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+  ]
+}
