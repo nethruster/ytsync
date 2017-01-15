@@ -40,7 +40,7 @@
             players: function() {
                 return Polymer.dom(this.root).querySelectorAll("google-youtube");
             },
-            getPlayer(id){
+            getPlayer: function(id){
                 return this.$$("#" + this._idPrefix + id);
             },
             play: function() {
