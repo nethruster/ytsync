@@ -9,9 +9,15 @@
     <style>
         :host {
             display: block;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
         }
     </style>
     <paper-icon-button icon="av:play-arrow" on-tap="playAll" alt="Play All Videos" class="tooltip play-all"></paper-icon-button>

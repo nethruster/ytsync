@@ -1,5 +1,5 @@
 {
-  "name": "YTSync",
+  "name": "ytsync",
   "description": "YTSync is a web app desined for play multiple yotube videos syncronized",
   "main": "index.html",
   "dependencies": {

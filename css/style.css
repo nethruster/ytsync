@@ -3,11 +3,17 @@
 body, 
 html {
     width: 100vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     min-height: 100vh;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     background-color: #eee;
     background-image: url('/img/bg.png');
+    -webkit-transition:all .4s ease-in-out;
     transition: all .4s ease-in-out;
     overflow-x: hidden;
 }
@@ -19,9 +25,15 @@ footer{
 #footer-container {
     height: 100%;
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 #footer-content {
     color: #fafafa;
@@ -34,6 +46,7 @@ footer{
 }
 #footer-content a {
     color: #90a4ae;
+    -webkit-transition:color .3s ease-in-out;
     transition: color .3s ease-in-out;
 }
 #footer-content a:hover {
@@ -44,9 +57,16 @@ footer{
 .tooltip::after, .tooltip::before {
     content: '';
     position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;    
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-transition:opacity .3s ease-in-out, margin .3s ease-in-out, visibility .3s ease-in-out;
     transition: opacity .3s ease-in-out, margin .3s ease-in-out, visibility .3s ease-in-out;
     visibility: hidden;
     opacity: 0;
@@ -117,9 +137,13 @@ footer{
 .tooltip.unmuted::after{
     content: 'Mute Video';
     width: 90px;
-    left: -90%;   
+    left: -90%;
 }
 /* PLAYER FADE ANIMATION */
+@-webkit-keyframes fade {
+    from {opacity: 0}
+    to {opacity: 1}
+}
 @keyframes fade {
     from {opacity: 0}
     to {opacity: 1}

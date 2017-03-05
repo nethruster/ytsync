@@ -17,8 +17,10 @@
             height: 100%;
             margin-bottom: 20px;
             background-color: #e6e6e6;
-            animation-name: fade;
-            animation-duration: .5s;
+            -webkit-animation-name: fade;
+                    animation-name: fade;
+            -webkit-animation-duration: .5s;
+                    animation-duration: .5s;
         }
         paper-slider {
             margin: 0 auto;
@@ -72,16 +74,28 @@
             position: absolute;
         }
         .volume-control {
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                    justify-content: space-between;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
         }
         .control-wrapper {
             box-shadow: 0 1px 15px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             height: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
             position: relative;
             overflow: hidden;
         }
@@ -103,19 +117,26 @@
             color: #222;
         }
         .extra, .default {
+            -webkit-transition: all 600ms cubic-bezier(0.645, 0.045, 0.355, 1);
             transition: all 600ms cubic-bezier(0.645, 0.045, 0.355, 1);
         }
         .extra {
-            transform: translate3d(0, 0, 0);
-            transform: translateX(135%);
+            -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+            -webkit-transform: translateX(135%);
+                    transform: translateX(135%);
         }
         .default.extra-active {
-            transform: translate3d(0, 0, 0);
-            transform: translateX(-140%);
+            -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+            -webkit-transform: translateX(-140%);
+                    transform: translateX(-140%);
         }
         .extra.extra-active {
-            transform: translate3d(0, 0, 0);
-            transform: translateX(0%);
+            -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+            -webkit-transform: translateX(0%);
+                    transform: translateX(0%);
         }
         .extra-label {
             display: inline-block;

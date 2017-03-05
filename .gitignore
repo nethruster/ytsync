@@ -2,3 +2,4 @@ bower_components/
 build/
 .idea/
 .vscode/
+debug.log
